@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchData } from './store/apiSlice';
 import { RootState } from './store/store';
 import useSWR from 'swr';
+import { AppDispatch } from './store/store';
 
 // APIエンドポイント
 const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
@@ -10,7 +11,7 @@ const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const App: React.FC = () => {
-  const dispatch = useDispatch<typeof fetchData>();
+  const dispatch = useDispatch<AppDispatch>();
   const { data, loading, error } = useSelector((state: RootState) => state.api);
 
   // SWRを使ってデータをフェッチ
